@@ -42,9 +42,9 @@ def show_all_pokemons(request):
                 pokemon['img_url']
             )
 
-    pokemons_on_page = []
+    pokemons_on_mainpage = []
     for pokemon in pokemons_db:
-        pokemons_on_page.append({
+        pokemons_on_mainpage.append({
             'pokemon_id': pokemon.id,
             'img_url': f'media/{pokemon.photo}',
             'title_ru': pokemon.title,
@@ -52,7 +52,7 @@ def show_all_pokemons(request):
 
     return render(request, 'mainpage.html', context={
         'map': folium_map._repr_html_(),
-        'pokemons': pokemons_on_page,
+        'pokemons': pokemons_on_mainpage,
     })
 
 
