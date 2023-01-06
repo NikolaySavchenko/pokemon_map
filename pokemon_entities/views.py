@@ -46,7 +46,7 @@ def show_all_pokemons(request):
         pokemons_on_mainpage.append({
             'pokemon_id': pokemon.id,
             'img_url': f'media/{pokemon.photo}',
-            'title_ru': pokemon.title,
+            'title_ru': pokemon.title_ru,
         })
 
     return render(request, 'mainpage.html', context={
@@ -67,7 +67,10 @@ def show_pokemon(request, pokemon_id):
         requested_pokemon = {
             'pokemon_id': pokemon_db.id,
             'img_url': f'../../media/{pokemon_db.photo}',
-            'title_ru': pokemon_db.title,
+            'title_ru': pokemon_db.title_ru,
+            'title_en': pokemon_db.title_en,
+            'title_jp': pokemon_db.title_jp,
+            'description': pokemon_db.description,
         }
     else:
         return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
