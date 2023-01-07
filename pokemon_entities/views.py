@@ -27,9 +27,8 @@ def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
 
 
 def show_all_pokemons(request):
-    with open('db.sqlite3'):
-        pokemons_db = Pokemon.objects.all()
-        pokemons_on_map = PokemonEntity.objects.filter(disappeared_at__gt=localtime())
+    pokemons_db = Pokemon.objects.all()
+    pokemons_on_map = PokemonEntity.objects.filter(disappeared_at__gt=localtime())
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
@@ -55,9 +54,8 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    with open('db.sqlite3'):
-        pokemon_db = Pokemon.objects.get(id=int(pokemon_id))
-        pokemons_on_map = PokemonEntity.objects.filter(pokemon=pokemon_db,
+    pokemon_db = Pokemon.objects.get(id=int(pokemon_id))
+    pokemons_on_map = PokemonEntity.objects.filter(pokemon=pokemon_db,
                                                        disappeared_at__gt=localtime())
 
     if pokemon_db:
